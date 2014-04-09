@@ -54,15 +54,25 @@ Results
 
 Example:
 
+    build-gcc-short/tester 10 500000 0 4 1
+    build-gcc-short/tester 10 500000 1 4 1
+    build-gcc-short/tester 10 500000 2 4 1
+
     build-gcc-short/tester 100000 5 0 4 1
     build-gcc-short/tester 100000 5 1 4 1
     build-gcc-short/tester 100000 5 2 4 1
+
     build-gcc-short/tester 1000000 5 0 4 1
     build-gcc-short/tester 1000000 5 1 4 1
+
     build-gcc-short/tester 10000000 5 0 4 1
     build-gcc-short/tester 10000000 5 1 4 1
 
 Output:
+
+    sort   10    500000   r-large   1   0.42968
+    tree   10    500000   r-large   1   2.00454
+    move   10    500000   r-large   1   0.59834
 
     sort   100000     5   r-large   1   0.14861
     tree   100000     5   r-large   1   1.33668
