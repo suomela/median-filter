@@ -1,0 +1,7 @@
+#!/bin/sh
+
+mkdir -p $WRKDIR/median-filter/log || exit 1
+mkdir -p $WRKDIR/median-filter/result/gcc-long || exit 1
+mkdir -p $WRKDIR/median-filter/result/gcc-short || exit 1
+rm -f tmp
+ln -s $WRKDIR/median-filter tmp

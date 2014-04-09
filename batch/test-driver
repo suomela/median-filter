@@ -7,4 +7,4 @@ alg="$4"
 gen="$5"
 seed="$6"
 
-"build-$build/tester" "$h" "$b" "$alg" "$gen" "$seed" >> "result/$build-$h-$b-$alg-$gen-$seed" || exit 1
+"build-$build/tester" "$h" "$b" "$alg" "$gen" "$seed" >> "tmp/result/$build/$h-$b-$alg-$gen-$seed" || exit 1

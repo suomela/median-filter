@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mkdir -p result
+for version in gcc-short gcc-long; do
+    cat tmp/result/$version/* |
+        perl -wlane 'print join("\t", $F[1] * $F[2], @F)' |
+        sort -s -k1,1n -k2,2 -k3,3n | cut -f2- > result/$version
+    wc -l result/$version
+done
