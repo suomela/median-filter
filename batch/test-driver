@@ -1,0 +1,10 @@
+#!/bin/sh
+
+build="$1"
+h="$2"
+b="$3"
+alg="$4"
+gen="$5"
+seed="$6"
+
+"build-$build/tester" "$h" "$b" "$alg" "$gen" "$seed" >> "result/$build-$h-$b-$alg-$gen-$seed" || exit 1
