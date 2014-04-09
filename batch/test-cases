@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+import sys
+
+p = int(sys.argv[1])
+
+for i in range(p):
+    for a,b in ((1,10), (2,5), (5,2)):
+        print a * 10**i, b * 10**(p-1-i)
+print 10**p, 1
