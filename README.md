@@ -1,7 +1,7 @@
 Median Filter
 =============
 
-(a.k.a. *sliding window median* or *running median*)
+(a.k.a. **sliding window median** or **running median**)
 
 Benchmarking median filter algorithms,
 see: http://cstheory.stackexchange.com/q/21730/74
@@ -20,7 +20,7 @@ Algorithms
 Compilation
 -----------
 
-*OS X:*
+**OS X:**
 
 - Install "gcc48" and "scons" from Homebrew.
 
@@ -37,14 +37,14 @@ This builds four versions:
 Tools
 -----
 
-*verify*: does some sanity-checking and makes sure that all three
+**verify**: does some sanity-checking and makes sure that all three
 algorithms produce the same output. Use the command line parameter
 for larger tests. Examples:
 
     build-gcc-short/verify
     build-gcc-short/verify 10
 
-*tester*: benchmarking with different parameter values and
+**tester**: benchmarking with different parameter values and
 different input data generators. Run without command line parameters
 for brief usage instructions.
 
