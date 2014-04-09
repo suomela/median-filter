@@ -20,13 +20,20 @@ Algorithms
 Compilation
 -----------
 
-**OS X:**
+**OS X** 10.9:
 
 - Install "gcc48" and "scons" from Homebrew.
 
-- Run "scons".
+- Run "scons". This compiles with both Clang and GCC.
 
-This builds four versions:
+
+**Linux** with GCC 4.8:
+
+- Run "bin/build-gcc".
+
+
+Versions
+--------
 
 - build-clang-short: compiled with Clang, 32-bit data
 - build-clang-long: compiled with Clang, 64-bit data
