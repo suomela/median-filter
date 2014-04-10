@@ -9,10 +9,7 @@ fi
 batch/test-cases 8 | while read h b; do
     for version in gcc-short gcc-long; do
         for alg in 0 1; do
-            for gen in 0 1; do
-                sbatch batch/test-batch-bigmem "$version" "$h" "$b" "$alg" "$gen" 0
-            done
-            for gen in 2 3 4 5 6; do
+            for gen in 0 1 2 3 4 5 6; do
                 sbatch batch/test-batch-bigmem "$version" "$h" "$b" "$alg" "$gen" "$seed"
             done
         done

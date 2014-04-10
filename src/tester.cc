@@ -46,9 +46,8 @@ int main(int argc, const char **argv) {
     TestDriver t {MedianFilter(p.half, p.blocks)};
     const DataGenerator& gen = generators[p.gen];
     const MedianAlgorithm& alg = median_algorithms[p.alg];
-    if (!gen.randomised && p.seed > 0) {
-        std::cerr << "not a randomised generator, seed should be 0" << std::endl;
-        return EXIT_FAILURE;
+    if (!gen.randomised) {
+        p.seed = 0;
     }
     gen.gen(t.x, p.seed);
     t.test(alg.alg);
