@@ -1,0 +1,157 @@
+#!/usr/bin/env python
+
+import os
+from collections import defaultdict
+import numpy
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot
+
+WIDTH = 7
+HEIGHT = 6
+BOTTOM = 0.4
+LEFT = 0.7
+MARGIN = 0.2
+
+DIR = 'plot'
+PCT = 10
+COL = {
+    'tree': '#ff0000',
+    'sort': '#0000ff',
+    'move': '#000000',
+}
+
+class Comparison:
+    def __init__(self, size, gen):
+        self.size = size
+        self.gen = gen
+        self.r = defaultdict(list)
+        self.d = defaultdict(lambda : defaultdict(list))
+        self.seen_alg = set()
+        self.seen_h = set()
+        self.seen_d = set()
+
+    def add(self, alg, version, h, b, seed, time):
+        if b == 1:
+            return
+        details = (version,)
+        self.seen_alg.add(alg)
+        self.seen_h.add(h)
+        self.r[(alg, h)].append(time)
+        self.d[(alg, h)][details].append(time)
+        self.seen_d.add(details)
+
+    def summarise(self):
+        print self.size, self.gen
+        algs = list(sorted(self.seen_alg))
+        hs = list(sorted(self.seen_h))
+        ds = list(sorted(self.seen_d))
+
+        SPP = matplotlib.figure.SubplotParams(
+            left=LEFT/WIDTH, right=1.0 - MARGIN/WIDTH,
+            bottom=BOTTOM/HEIGHT, top=1.0 - MARGIN/HEIGHT,
+        )
+
+        fig = matplotlib.pyplot.figure(figsize=(WIDTH, HEIGHT), subplotpars=SPP)
+        ax = fig.add_subplot(111)
+        ax.set_xscale('log')
+
+        maxt = 0
+        for alg in algs:
+            t = []
+            ta = []
+            tb = []
+            for h in hs:
+                k = (alg, h)
+                r = self.r[k]
+                t.append(numpy.median(r))
+                ta.append(numpy.percentile(r, PCT))
+                tb.append(numpy.percentile(r, 100-PCT))
+            ax.plot(hs, t,
+                color=COL[alg],
+                marker='o',
+                mec=COL[alg],
+                mfc='#ffffff',
+                ms=5,
+            )
+            ax.fill_between(hs, ta, tb,
+                facecolor=COL[alg],
+                alpha=0.05,
+            )
+            if alg != 'move':
+                maxt = max(maxt, max(t))
+
+        ax.set_xlim((min(hs)/2., max(hs)*2.))
+        ax.set_ylim((0, 1.2 * maxt))
+        fig.savefig('{}/summary-{}-{}.pdf'.format(DIR, self.size, self.gen))
+        matplotlib.pyplot.close(fig)
+
+        fig = matplotlib.pyplot.figure(figsize=(WIDTH, HEIGHT), subplotpars=SPP)
+        ax = fig.add_subplot(111)
+        ax.set_xscale('log')
+
+        y = []
+        ya = []
+        yb = []
+        for h in hs:
+            k1 = ('tree', h)
+            k2 = ('sort', h)
+            z = []
+            for d in ds:
+                r1 = self.d[k1][d]
+                r2 = self.d[k2][d]
+                if len(r1) == len(r2) > 0:
+                    z.append(float(numpy.mean(r1)) / numpy.mean(r2))
+            y.append(numpy.median(z))
+            ya.append(numpy.percentile(z, PCT))
+            yb.append(numpy.percentile(z, 100-PCT))
+
+        ax.plot(hs, y,
+            color=COL['sort'],
+            marker='o',
+            mec=COL['sort'],
+            mfc='#ffffff',
+            ms=5,
+        )
+        ax.fill_between(hs, ya, yb,
+            facecolor=COL['sort'],
+            alpha=0.05,
+        )
+
+        ax.set_xlim((min(hs)/2., max(hs)*2.))
+        ax.set_ylim((0, 1.2 * max(y)))
+        fig.savefig('{}/speedup-{}-{}.pdf'.format(DIR, self.size, self.gen))
+        matplotlib.pyplot.close(fig)
+
+
+class Analysis:
+    def __init__(self):
+        self.comp = {}
+
+    def read(self, filename):
+        with open('result/{}'.format(filename)) as f:
+            for l in f:
+                alg, h, b, gen, seed, time = l.rstrip('\n').split('\t')
+                h = int(h)
+                b = int(b)
+                size = h * b
+                seed = int(seed)
+                time = float(time)
+                key = (size, gen)
+                if key not in self.comp:
+                    self.comp[key] = Comparison(size, gen)
+                self.comp[key].add(alg, filename, h, b, seed, time)
+
+    def summarise(self):
+        for key in sorted(self.comp.keys()):
+            self.comp[key].summarise()
+
+def main():
+    if not os.path.exists(DIR):
+        os.makedirs(DIR)
+    r = Analysis()
+    r.read('gcc-short')
+    r.read('gcc-long')
+    r.summarise()
+
+main()
