@@ -1,7 +1,14 @@
 #!/bin/sh
 
-mkdir -p $WRKDIR/median-filter/log || exit 1
-mkdir -p $WRKDIR/median-filter/result/gcc-long || exit 1
-mkdir -p $WRKDIR/median-filter/result/gcc-short || exit 1
 rm -f tmp
-ln -s $WRKDIR/median-filter tmp
+rm -rf "$WRKDIR/median-filter"
+mkdir -p "$WRKDIR/median-filter" || exit 1
+ln -s "$WRKDIR/median-filter" tmp || exit 1
+
+mkdir -p tmp/log || exit 1
+for version in gcc-long gcc-short; do
+    mkdir -p "tmp/result/$version" || exit 1
+    if [ -f "result/$version" ]; then
+        cp "result/$version" "tmp/result/$version/old" || exit 1
+    fi
+done
