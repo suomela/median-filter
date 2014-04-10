@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH -p short
+#SBATCH --qos=short
+#SBATCH --time=00:30:00
+#SBATCH --mem-per-cpu=23000
+#SBATCH --constraint=xeon
+#SBATCH --output=tmp/log/slurm-%j.out
+
+srun batch/test-driver "$@"
+
