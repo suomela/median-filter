@@ -14,7 +14,6 @@ private:
     struct Elem {
         elem_t data;
         unsigned rank;
-        Links history;
         Links cur;
     };
 
@@ -51,7 +50,6 @@ public:
         for (unsigned j {0}; j < filter.k; ++j) {
             unsigned i {filter.k - 1 - j};
             Links a = elem[i].cur;
-            elem[i].history = a;
             elem[a.prev].cur.next = a.next;
             elem[a.next].cur.prev = a.prev;
         }
@@ -80,10 +78,9 @@ public:
     }
 
     inline void add(unsigned i) {
-        Links l = elem[i].history;
+        Links l = elem[i].cur;
         elem[l.prev].cur.next = i;
         elem[l.next].cur.prev = i;
-        elem[i].cur = l;
         if (elem[i].rank < elem[med].rank) {
             med = elem[med].cur.prev;
         }
