@@ -77,19 +77,19 @@ Example:
 
 Output:
 
-    sort   10    500000   r-large   1   0.42968
-    tree   10    500000   r-large   1   2.00454
-    move   10    500000   r-large   1   0.59834
+    sort   10    500000   r-large   1   0.41762
+    tree   10    500000   r-large   1   1.87928
+    move   10    500000   r-large   1   0.58916
 
-    sort   100000     5   r-large   1   0.14861
-    tree   100000     5   r-large   1   1.33668
-    move   100000     5   r-large   1   8.79636
+    sort   100000     5   r-large   1   0.10857
+    tree   100000     5   r-large   1   1.28120
+    move   100000     5   r-large   1   8.74902
 
-    sort   1000000    5   r-large   1   2.13468
-    tree   1000000    5   r-large   1   28.32548
+    sort   1000000    5   r-large   1   1.66317
+    tree   1000000    5   r-large   1   27.97039
 
-    sort   10000000   5   r-large   1   30.67998
-    tree   10000000   5   r-large   1   439.91745
+    sort   10000000   5   r-large   1   25.30195
+    tree   10000000   5   r-large   1   426.24067
 
 Columns:
 
