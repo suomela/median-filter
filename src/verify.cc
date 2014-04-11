@@ -1,3 +1,4 @@
+#include <climits>
 #include <iostream>
 #include "DataGenerator.h"
 #include "TestDriver.h"
@@ -38,7 +39,7 @@ static bool arg_parse(int argc, const char **argv, unsigned &scale, bool &skipmo
         skipmove = true;
     }
     if (argc > 1) {
-        if (!parse_uint(argv[1], scale, 1, 1000, "SCALE")) {
+        if (!parse_uint(argv[1], scale, 1, UINT_MAX, "SCALE")) {
             return false;
         }
     }
