@@ -42,6 +42,9 @@ public:
         }
         std::sort(sorted.begin(), sorted.end());
         init_links();
+        med = sorted[filter.half].second;
+        small = filter.half;
+        large = filter.half + 1;
     }
 
     void unwind() {
@@ -52,17 +55,6 @@ public:
             elem[a.prev].cur.next = a.next;
             elem[a.next].cur.prev = a.prev;
         }
-    }
-
-    void full_cur() {
-        med = sorted[filter.half].second;
-        small = filter.half;
-        large = filter.half + 1;
-    }
-
-    void empty_cur() {
-        elem[head()].cur = {NONE, tail()};
-        elem[tail()].cur = {head(), NONE};
         med = tail();
         small = 0;
         large = 0;
@@ -167,8 +159,6 @@ public:
             std::swap(a, b);
             b.init(x, part);
             b.unwind();
-            a.full_cur();
-            b.empty_cur();
             run_part(y, part);
         }
     }
