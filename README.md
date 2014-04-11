@@ -46,10 +46,12 @@ Tools
 
 **verify**: does some sanity-checking and makes sure that all three
 algorithms produce the same output. Use the command line parameter
-for larger tests. Examples:
+for larger tests, and another parameter to skip the slowest
+algorithm. Examples:
 
     build-gcc-short/verify
     build-gcc-short/verify 10
+    build-gcc-short/verify 100 x
 
 **tester**: benchmarking with different parameter values and
 different input data generators. Run without command line parameters
