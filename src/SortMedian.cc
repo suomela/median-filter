@@ -6,15 +6,11 @@ struct Part {
 private:
     constexpr static unsigned NONE {std::numeric_limits<unsigned>::max()};
 
-    struct Links {
-        unsigned prev;
-        unsigned next;
-    };
-
     struct Elem {
         elem_t data;
         unsigned rank;
-        Links cur;
+        unsigned prev;
+        unsigned next;
     };
 
 public:
@@ -49,9 +45,9 @@ public:
     void unwind() {
         for (unsigned j {0}; j < filter.k; ++j) {
             unsigned i {filter.k - 1 - j};
-            Links a = elem[i].cur;
-            elem[a.prev].cur.next = a.next;
-            elem[a.next].cur.prev = a.prev;
+            Elem e = elem[i];
+            elem[e.prev].next = e.next;
+            elem[e.next].prev = e.prev;
         }
         med = tail();
         small = 0;
@@ -59,17 +55,17 @@ public:
     }
 
     inline void del(unsigned i) {
-        Links l = elem[i].cur;
-        elem[l.prev].cur.next = l.next;
-        elem[l.next].cur.prev = l.prev;
-        if (elem[i].rank < elem[med].rank) {
+        Elem e = elem[i];
+        elem[e.prev].next = e.next;
+        elem[e.next].prev = e.prev;
+        if (e.rank < elem[med].rank) {
             --small;
         } else {
             if (i == med) {
-                med = l.next;
+                med = e.next;
             }
             if (small > 0) {
-                med = elem[med].cur.prev;
+                med = elem[med].prev;
                 --small;
             } else {
                 --large;
@@ -78,17 +74,17 @@ public:
     }
 
     inline void add(unsigned i) {
-        Links l = elem[i].cur;
-        elem[l.prev].cur.next = i;
-        elem[l.next].cur.prev = i;
-        if (elem[i].rank < elem[med].rank) {
-            med = elem[med].cur.prev;
+        Elem e = elem[i];
+        elem[e.prev].next = i;
+        elem[e.next].prev = i;
+        if (e.rank < elem[med].rank) {
+            med = elem[med].prev;
         }
         ++large;
     }
 
     inline void advance() {
-        med = elem[med].cur.next;
+        med = elem[med].next;
         ++small;
         --large;
     }
@@ -108,18 +104,18 @@ public:
 private:
     void init_links() {
         unsigned a {head()};
-        elem[head()].cur.prev = NONE;
+        elem[head()].prev = NONE;
         elem[head()].rank = NONE;
         for (unsigned i {0}; i < filter.k; ++i) {
             unsigned b {sorted[i].second};
-            elem[a].cur.next = b;
-            elem[b].cur.prev = a;
+            elem[a].next = b;
+            elem[b].prev = a;
             elem[b].rank = i;
             a = b;
         }
-        elem[a].cur.next = tail();
-        elem[tail()].cur.prev = a;
-        elem[tail()].cur.next = NONE;
+        elem[a].next = tail();
+        elem[tail()].prev = a;
+        elem[tail()].next = NONE;
         elem[tail()].rank = filter.k;
     }
 
