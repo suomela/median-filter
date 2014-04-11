@@ -14,7 +14,6 @@ private:
     struct Elem {
         elem_t data;
         unsigned rank;
-        Links links;
         Links history;
         Links cur;
     };
@@ -46,7 +45,6 @@ public:
     }
 
     void unwind() {
-        copy_cur();
         for (unsigned j {0}; j < filter.k; ++j) {
             unsigned i {filter.k - 1 - j};
             Links a = elem[i].cur;
@@ -57,7 +55,6 @@ public:
     }
 
     void full_cur() {
-        copy_cur();
         med = sorted[filter.half].second;
         small = filter.half;
         large = filter.half + 1;
@@ -122,25 +119,19 @@ public:
 private:
     void init_links() {
         unsigned a {head()};
-        elem[head()].links.prev = NONE;
+        elem[head()].cur.prev = NONE;
         elem[head()].rank = NONE;
         for (unsigned i {0}; i < filter.k; ++i) {
             unsigned b {sorted[i].second};
-            elem[a].links.next = b;
-            elem[b].links.prev = a;
+            elem[a].cur.next = b;
+            elem[b].cur.prev = a;
             elem[b].rank = i;
             a = b;
         }
-        elem[a].links.next = tail();
-        elem[tail()].links.prev = a;
-        elem[tail()].links.next = NONE;
+        elem[a].cur.next = tail();
+        elem[tail()].cur.prev = a;
+        elem[tail()].cur.next = NONE;
         elem[tail()].rank = filter.k;
-    }
-
-    void copy_cur() {
-        for (unsigned i {0}; i < listsize(); ++i) {
-            elem[i].cur = elem[i].links;
-        }
     }
 
     inline unsigned head() const {
