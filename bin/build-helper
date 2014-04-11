@@ -3,9 +3,9 @@
 common="DataGenerator.cc TestDriver.cc MedianAlgorithm.cc SortMedian.cc TreeMedian.cc MoveMedian.cc Util.cc"
 
 cd src || exit 1
-mkdir -p ../build-gcc-short ../build-gcc-long || exit 1
+mkdir -p ../build-$VERSION-short ../build-$VERSION-long || exit 1
 for a in tester verify; do
     echo "$a..."
-    $CXX                $CXXFLAGS $a.cc $common -o ../build-gcc-short/$a || exit 1
-    $CXX -DELEMENT_LONG $CXXFLAGS $a.cc $common -o ../build-gcc-long/$a  || exit 1
+    $CXX                $CXXFLAGS $a.cc $common -o ../build-$VERSION-short/$a || exit 1
+    $CXX -DELEMENT_LONG $CXXFLAGS $a.cc $common -o ../build-$VERSION-long/$a  || exit 1
 done
