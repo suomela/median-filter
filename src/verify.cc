@@ -48,10 +48,12 @@ int main(int argc, const char **argv) {
         return EXIT_FAILURE;
     }
     for (unsigned gen {0}; gen < n_generators; ++gen) {
-        verify(MedianFilter(10000, 1 * scale), gen);
-        verify(MedianFilter(1000, 10 * scale), gen);
-        verify(MedianFilter(100, 100 * scale), gen);
-        verify(MedianFilter(10, 1000 * scale), gen);
-        verify(MedianFilter(1, 10000 * scale), gen);
+        unsigned h {1};
+        unsigned b {10000 * scale};
+        while (b >= 1) {
+            verify(MedianFilter(h, b), gen);
+            h *= 10;
+            b /= 10;
+        }
     }
 }
