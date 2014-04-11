@@ -104,3 +104,26 @@ Columns:
 
 Here window size is k = 2h + 1.
 Input data is a vector with n = bk elements.
+
+
+Plots
+-----
+
+**plot/summary-...**:
+
+- x axis: half-window size
+- y axis: running time
+- blue: "sort" algorithm
+- red: "tree" algorithm
+- black: "move" algorithm
+
+**plot/speedup-...**:
+
+- x axis: half-window size
+- y axis: speedup of "sort" vs. "tree"
+
+In each plot:
+
+- solid curve = median
+- shaded area = 10% ... 90% region
+
