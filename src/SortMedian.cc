@@ -43,7 +43,17 @@ public:
         }
         std::sort(sorted.begin(), sorted.end());
         init_links();
-        init_hist();
+    }
+
+    void unwind() {
+        copy_cur();
+        for (unsigned j {0}; j < filter.k; ++j) {
+            unsigned i {filter.k - 1 - j};
+            Links a = elem[i].cur;
+            elem[i].history = a;
+            elem[a.prev].cur.next = a.next;
+            elem[a.next].cur.prev = a.prev;
+        }
     }
 
     void full_cur() {
@@ -109,7 +119,6 @@ public:
         return sorted[filter.half].first;
     }
 
-
 private:
     void init_links() {
         unsigned a {head()};
@@ -126,17 +135,6 @@ private:
         elem[tail()].links.prev = a;
         elem[tail()].links.next = NONE;
         elem[tail()].rank = filter.k;
-    }
-
-    void init_hist() {
-        copy_cur();
-        for (unsigned j {0}; j < filter.k; ++j) {
-            unsigned i {filter.k - 1 - j};
-            Links a = elem[i].cur;
-            elem[i].history = a;
-            elem[a.prev].cur.next = a.next;
-            elem[a.next].cur.prev = a.prev;
-        }
     }
 
     void copy_cur() {
@@ -177,6 +175,7 @@ public:
         for (unsigned part {1}; part < filter.blocks; ++part) {
             std::swap(a, b);
             b.init(x, part);
+            b.unwind();
             a.full_cur();
             b.empty_cur();
             run_part(y, part);
