@@ -127,3 +127,19 @@ In each plot:
 - solid curve = median
 - shaded area = 10% ... 90% region
 
+
+License
+-------
+
+Copyright (c) 2014, Jukka Suomela.
+
+Enjoy, use at your own risk.
+
+To contact the author, see http://users.ics.aalto.fi/suomela/
+
+
+Acknowledgements
+----------------
+
+Computer resources were provided by the Aalto University
+School of Science "Science-IT" project.
