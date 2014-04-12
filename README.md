@@ -33,20 +33,30 @@ work fine:
 
     Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn)
 
+For OS X 10.9.2, you can get the right versions of the compilers
+from the following sources:
 
+- clang++: from Apple
+- g++-4.8: from Homebrew
 
+Depending on your C++ compiler and operating system, use one of
+the following scripts to compile this software.
 
+**OS X**:
 
-**OS X** 10.9:
+- "bin/build-clang": compiles with "clang++"
+- "bin/build-gcc-4.8-osx": compiles with "g++-4.8"
 
-- Install "gcc48" and "scons" from Homebrew.
+**Linux**:
 
-- Run "scons". This compiles with both Clang and GCC.
+- "bin/build-gcc": compiles with "g++"
+- "bin/build-gcc-4.7": compiles with "g++-4.7"
+- "bin/build-gcc-4.8": compiles with "g++-4.8"
 
-
-**Linux** with GCC 4.8:
-
-- Run "bin/build-gcc".
+You can also try to use "scons" to compile everything. The build
+scripts are configured for OS X platforms that have both clang++
+and g++-4.8 installed. You can get both scons and g++-4.8 from
+Homebrew.
 
 
 Versions
