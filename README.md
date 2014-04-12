@@ -17,7 +17,7 @@ Input:
 
 Output:
 
-  - vector y with k elements
+  - vector y with n-k+1 elements
   - y[i] is the median of x[i], x[i+1], ..., x[i+k−1].
 
 See: http://en.wikipedia.org/wiki/Median_filter
