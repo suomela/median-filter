@@ -1,0 +1,3 @@
+#!/bin/sh
+
+CXX="clang++" CXXFLAGS="-std=c++11 -march=native -O3 -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unused-parameter -Wno-unused-function -Wno-unused-variable" VERSION="clang" bin/build-helper || exit 1

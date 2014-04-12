@@ -15,7 +15,7 @@ for version in ['long', 'short']:
         CPPDEFINES=cppdefines,
     )
     build('build-clang-' + version,
-        CXX='xcrun clang++',
+        CXX='clang++',
         CXXFLAGS='-std=c++11 -march=native -O3 -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unused-parameter -Wno-unused-function -Wno-unused-variable',
         CPPDEFINES=cppdefines,
     )

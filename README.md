@@ -20,6 +20,23 @@ Algorithms
 Compilation
 -----------
 
+The software is written in C++11. To compile it, you will need a
+recent C++ compiler. For example, the following compilers should
+work fine:
+
+- g++ (GCC 4.7.3 or later). Tested with these versions:
+
+    g++-4.7 (Ubuntu/Linaro 4.7.3-2ubuntu1~12.04) 4.7.3
+    g++-4.8 (GCC) 4.8.2
+
+- clang++ (LLVM 3.4 or later). Tested with these versions:
+
+    Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn)
+
+
+
+
+
 **OS X** 10.9:
 
 - Install "gcc48" and "scons" from Homebrew.
