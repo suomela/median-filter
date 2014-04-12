@@ -10,11 +10,11 @@ see: http://cstheory.stackexchange.com/q/21730/74
 Algorithms
 ----------
 
-- "sort": O(n log k): sort blocks, do linear-time post-processing
+  - "sort": O(n log k): sort blocks, do linear-time post-processing
 
-- "tree": O(n log k): maintain balanced search trees
+  - "tree": O(n log k): maintain balanced search trees
 
-- "move": O(n k): maintain sorted vector
+  - "move": O(n k): maintain sorted vector
 
 
 Compilation
@@ -24,34 +24,34 @@ The software is written in C++11. To compile it, you will need a
 recent C++ compiler. For example, the following compilers should
 work fine:
 
-- g++ (GCC 4.7.3 or later). Tested with these versions:
+  - g++ (GCC 4.7.3 or later). Tested with these versions:
 
-    g++-4.7 (Ubuntu/Linaro 4.7.3-2ubuntu1~12.04) 4.7.3
-    g++-4.8 (GCC) 4.8.2
+        g++-4.7 (Ubuntu/Linaro 4.7.3-2ubuntu1~12.04) 4.7.3
+        g++-4.8 (GCC) 4.8.2
 
-- clang++ (LLVM 3.4 or later). Tested with these versions:
+  - clang++ (LLVM 3.4 or later). Tested with these versions:
 
-    Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn)
+        Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn)
 
 For OS X 10.9.2, you can get the right versions of the compilers
 from the following sources:
 
-- clang++: from Apple
-- g++-4.8: from Homebrew
+  - clang++: from Apple
+  - g++-4.8: from Homebrew
 
 Depending on your C++ compiler and operating system, use one of
 the following scripts to compile this software.
 
 **OS X**:
 
-- "bin/build-clang": compiles with "clang++"
-- "bin/build-gcc-4.8-osx": compiles with "g++-4.8"
+  - "bin/build-clang": compiles with "clang++"
+  - "bin/build-gcc-4.8-osx": compiles with "g++-4.8"
 
 **Linux**:
 
-- "bin/build-gcc": compiles with "g++"
-- "bin/build-gcc-4.7": compiles with "g++-4.7"
-- "bin/build-gcc-4.8": compiles with "g++-4.8"
+  - "bin/build-gcc": compiles with "g++"
+  - "bin/build-gcc-4.7": compiles with "g++-4.7"
+  - "bin/build-gcc-4.8": compiles with "g++-4.8"
 
 You can also try to use "scons" to compile everything. The build
 scripts are configured for OS X platforms that have both clang++
@@ -62,10 +62,10 @@ Homebrew.
 Versions
 --------
 
-- build-clang-short: compiled with Clang, 32-bit data
-- build-clang-long: compiled with Clang, 64-bit data
-- build-gcc-short: compiled with GCC, 32-bit data
-- build-gcc-long: compiled with GCC, 64-bit data
+  - build-clang-short: compiled with Clang, 32-bit data
+  - build-clang-long: compiled with Clang, 64-bit data
+  - build-gcc-short: compiled with GCC, 32-bit data
+  - build-gcc-long: compiled with GCC, 64-bit data
 
 
 Tools
@@ -122,12 +122,12 @@ Output:
 
 Columns:
 
-- algorithm
-- h, the half-window size
-- b, the number of blocks
-- input data generator
-- random seed
-- time in seconds
+  - algorithm
+  - h, the half-window size
+  - b, the number of blocks
+  - input data generator
+  - random seed
+  - time in seconds
 
 Here window size is k = 2h + 1.
 Input data is a vector with n = bk elements.
@@ -138,21 +138,21 @@ Plots
 
 **plot/summary-...**:
 
-- x axis: half-window size
-- y axis: running time
-- blue: "sort" algorithm
-- red: "tree" algorithm
-- black: "move" algorithm
+  - x axis: half-window size
+  - y axis: running time
+  - blue: "sort" algorithm
+  - red: "tree" algorithm
+  - black: "move" algorithm
 
 **plot/speedup-...**:
 
-- x axis: half-window size
-- y axis: speedup of "sort" vs. "tree"
+  - x axis: half-window size
+  - y axis: speedup of "sort" vs. "tree"
 
 In each plot:
 
-- solid curve = median
-- shaded area = 10% ... 90% region
+  - solid curve = median
+  - shaded area = 10% ... 90% region
 
 
 License
