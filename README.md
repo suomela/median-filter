@@ -186,3 +186,9 @@ Acknowledgements
 
 Computer resources were provided by the Aalto University
 School of Science "Science-IT" project.
+
+Thanks to David Eppstein, Geoffrey Irving, Pat Morin, and Saeed
+for comments and discussions here:
+http://cstheory.stackexchange.com/q/21730/74
+https://plus.google.com/+JukkaSuomela/posts/JWtBkytfJsA
+
