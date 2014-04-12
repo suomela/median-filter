@@ -7,6 +7,22 @@ Benchmarking median filter algorithms,
 see: http://cstheory.stackexchange.com/q/21730/74
 
 
+Problem
+-------
+
+Input:
+
+  - vector x with n elements
+  - window size k
+
+Output:
+
+  - vector y with k elements
+  - y[i] is the median of x[i], x[i+1], ..., x[i+k−1].
+
+See: http://en.wikipedia.org/wiki/Median_filter
+
+
 Algorithms
 ----------
 
