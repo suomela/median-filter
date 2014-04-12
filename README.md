@@ -189,6 +189,7 @@ School of Science "Science-IT" project.
 
 Thanks to David Eppstein, Geoffrey Irving, Pat Morin, and Saeed
 for comments and discussions here:
-http://cstheory.stackexchange.com/q/21730/74
-https://plus.google.com/+JukkaSuomela/posts/JWtBkytfJsA
+
+  - http://cstheory.stackexchange.com/q/21730/74
+  - https://plus.google.com/+JukkaSuomela/posts/JWtBkytfJsA
 
