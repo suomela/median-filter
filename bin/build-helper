@@ -1,6 +1,6 @@
 #!/bin/sh
 
-common="DataGenerator.cc TestDriver.cc MedianAlgorithm.cc SortMedian.cc TreeMedian.cc MoveMedian.cc Util.cc"
+common="DataGenerator.cc TestDriver.cc MedianAlgorithm.cc SortMedian.cc HeapMedian.cc TreeMedian.cc MoveMedian.cc Util.cc"
 
 cd src || exit 1
 mkdir -p ../build-$VERSION-short ../build-$VERSION-long || exit 1
