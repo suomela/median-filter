@@ -164,20 +164,13 @@ In this example we used the following generators:
 Plots
 -----
 
-**plot/summary-...**:
-
   - x axis: half-window size
   - y axis: running time
+
   - blue: "sort" algorithm
+  - green: "heap" algorithm
   - red: "tree" algorithm
   - black: "move" algorithm
-
-**plot/speedup-...**:
-
-  - x axis: half-window size
-  - y axis: speedup of "sort" vs. "tree"
-
-In each plot:
 
   - solid curve = median
   - shaded area = 10% ... 90% region
