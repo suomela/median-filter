@@ -16,8 +16,9 @@ MARGIN = 0.2
 DIR = 'plot'
 PCT = 10
 COL = {
-    'tree': '#ff0000',
     'sort': '#0000ff',
+    'heap': '#008000',
+    'tree': '#ff0000',
     'move': '#000000',
 }
 
@@ -26,26 +27,20 @@ class Comparison:
         self.size = size
         self.gen = gen
         self.r = defaultdict(list)
-        self.d = defaultdict(lambda : defaultdict(list))
         self.seen_alg = set()
         self.seen_h = set()
-        self.seen_d = set()
 
     def add(self, alg, version, h, b, seed, time):
         if b == 1:
             return
-        details = (version,)
         self.seen_alg.add(alg)
         self.seen_h.add(h)
         self.r[(alg, h)].append(time)
-        self.d[(alg, h)][details].append(time)
-        self.seen_d.add(details)
 
     def summarise(self):
         print self.size, self.gen
         algs = list(sorted(self.seen_alg))
         hs = list(sorted(self.seen_h))
-        ds = list(sorted(self.seen_d))
 
         SPP = matplotlib.figure.SubplotParams(
             left=LEFT/WIDTH, right=1.0 - MARGIN/WIDTH,
@@ -84,43 +79,6 @@ class Comparison:
         ax.set_xlim((min(hs)/2., max(hs)*2.))
         ax.set_ylim((0, 1.2 * maxt))
         fig.savefig('{}/summary-{}-{}.pdf'.format(DIR, self.size, self.gen))
-        matplotlib.pyplot.close(fig)
-
-        fig = matplotlib.pyplot.figure(figsize=(WIDTH, HEIGHT), subplotpars=SPP)
-        ax = fig.add_subplot(111)
-        ax.set_xscale('log')
-
-        y = []
-        ya = []
-        yb = []
-        for h in hs:
-            k1 = ('tree', h)
-            k2 = ('sort', h)
-            z = []
-            for d in ds:
-                r1 = self.d[k1][d]
-                r2 = self.d[k2][d]
-                if len(r1) == len(r2) > 0:
-                    z.append(float(numpy.mean(r1)) / numpy.mean(r2))
-            y.append(numpy.median(z))
-            ya.append(numpy.percentile(z, PCT))
-            yb.append(numpy.percentile(z, 100-PCT))
-
-        ax.plot(hs, y,
-            color=COL['sort'],
-            marker='o',
-            mec=COL['sort'],
-            mfc='#ffffff',
-            ms=5,
-        )
-        ax.fill_between(hs, ya, yb,
-            facecolor=COL['sort'],
-            alpha=0.05,
-        )
-
-        ax.set_xlim((min(hs)/2., max(hs)*2.))
-        ax.set_ylim((0, 1.2 * max(y)))
-        fig.savefig('{}/speedup-{}-{}.pdf'.format(DIR, self.size, self.gen))
         matplotlib.pyplot.close(fig)
 
 
