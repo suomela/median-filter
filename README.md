@@ -28,6 +28,9 @@ Algorithms
 
   - "sort": O(n log k): sort blocks, do linear-time post-processing
 
+  - "heap": O(n log k): maintain heaps
+    (by Colin Raffel, from https://github.com/craffel/median-filter)
+
   - "tree": O(n log k): maintain balanced search trees
 
   - "move": O(n k): maintain sorted vector
@@ -174,11 +177,23 @@ In each plot:
 License
 -------
 
+### Other parts
+
 Copyright (c) 2014, Jukka Suomela.
 
 Enjoy, use at your own risk.
 
 To contact the author, see http://users.ics.aalto.fi/suomela/
+
+
+### HeapMedian.cc
+
+Based on: https://github.com/craffel/median-filter (file Mediator.h)
+
+    Sliding median filter
+    Created 2012 by Colin Raffel
+    Portions Copyright (c) 2011 ashelly.myopenid.com under
+    <http://www.opensource.org/licenses/mit-license>
 
 
 Acknowledgements
