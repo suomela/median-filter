@@ -23,9 +23,8 @@ COL = {
 }
 
 class Comparison:
-    def __init__(self, size, gen):
-        self.size = size
-        self.gen = gen
+    def __init__(self, key):
+        self.key = key
         self.r = defaultdict(list)
         self.seen_alg = set()
         self.seen_h = set()
@@ -38,7 +37,7 @@ class Comparison:
         self.r[(alg, h)].append(time)
 
     def summarise(self):
-        print self.size, self.gen
+        print self.key
         algs = list(sorted(self.seen_alg))
         hs = list(sorted(self.seen_h))
 
@@ -78,7 +77,7 @@ class Comparison:
 
         ax.set_xlim((min(hs)/2., max(hs)*2.))
         ax.set_ylim((0, 1.2 * maxt))
-        fig.savefig('{}/summary-{}-{}.pdf'.format(DIR, self.size, self.gen))
+        fig.savefig('{}/summary-{}.pdf'.format(DIR, self.key))
         matplotlib.pyplot.close(fig)
 
 
@@ -95,10 +94,13 @@ class Analysis:
                 size = h * b
                 seed = int(seed)
                 time = float(time)
-                key = (size, gen)
-                if key not in self.comp:
-                    self.comp[key] = Comparison(size, gen)
-                self.comp[key].add(alg, filename, h, b, seed, time)
+                keys = []
+                keys.append('{}'.format(size))
+                keys.append('{}-{}'.format(size, gen))
+                for key in keys:
+                    if key not in self.comp:
+                        self.comp[key] = Comparison(key)
+                    self.comp[key].add(alg, filename, h, b, seed, time)
 
     def summarise(self):
         for key in sorted(self.comp.keys()):
