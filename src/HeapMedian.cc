@@ -1,10 +1,10 @@
+#include "HeapMedian.h"
+
+// Based on:
+// https://github.com/craffel/median-filter
 // Sliding median filter
 // Created 2012 by Colin Raffel
 // Portions Copyright (c) 2011 ashelly.myopenid.com under <http://www.opensource.org/licenses/mit-license>
-
-
-#ifndef MEDIATOR_H
-#define MEDIATOR_H
 
 template <typename Item> class Mediator
 {
@@ -24,14 +24,14 @@ public:
       pos[nItems] = ((nItems + 1)/2)*((nItems & 1) ? -1 : 1);
       heap[pos[nItems]] = nItems;
     }
-  };
+  }
   
   ~Mediator()
   {
     delete data;
     delete pos;
     delete allocatedHeap;
-  };
+  }
   
   // Inserts item, maintains median in O(lg nItems)
   void insert( Item v )
@@ -86,7 +86,7 @@ public:
         minSortDown( 1 );
       }
     }
-  };
+  }
   
   // Returns median item (or average of 2 when item count is even)
   Item getMedian()
@@ -97,7 +97,7 @@ public:
       v = (v + data[heap[-1]])/2;
     }
     return v;
-  };
+  }
   
 private:
   
@@ -110,7 +110,7 @@ private:
     pos[heap[i]] = i;
     pos[heap[j]] = j;
     return 1;
-  };
+  }
   
   // Maintains minheap property for all items below i.
   void minSortDown( int i )
@@ -126,7 +126,7 @@ private:
         break;
       }
     }
-  };
+  }
 
   // Maintains maxheap property for all items below i. (negative indexes)
   void maxSortDown( int i )
@@ -142,19 +142,19 @@ private:
         break;
       }
     }
-  };
+  }
   
   // Returns 1 if heap[i] < heap[j]
   inline int mmless( int i, int j )
   {
     return (data[heap[i]] < data[heap[j]]);
-  };
+  }
   
   // Swaps items i&j if i<j; returns true if swapped
   inline int mmCmpExch( int i, int j )
   {
     return (mmless( i, j ) && mmexchange( i, j ));
-  };
+  }
   
   // Maintains minheap property for all items above i, including median
   // Returns true if median changed
@@ -165,7 +165,7 @@ private:
       i /= 2;
     }
     return (i == 0);
-  };
+  }
   
   // Maintains maxheap property for all items above i, including median
   // Returns true if median changed
@@ -176,7 +176,7 @@ private:
       i /= 2;
     }
     return ( i==0 );
-  };
+  }
 
   // Circular queue of values
   Item* data;
@@ -196,4 +196,30 @@ private:
   int maxCt;
 };
 
-#endif
+
+class HeapMedian {
+public:
+    explicit HeapMedian(MedianFilter f) :
+        filter {f}
+    {}
+
+    void run(const Vector& x, Vector& y) {
+        Mediator<elem_t> mediator(static_cast<int>(filter.k));
+        for (unsigned i {0}; i < filter.k; ++i) {
+            mediator.insert(x[i]);
+        }
+        y[0] = mediator.getMedian();
+        for (unsigned i {filter.k}; i < filter.n; ++i) {
+            mediator.insert(x[i]);
+            y[i - filter.k + 1] = mediator.getMedian();
+        }
+    }
+
+private:
+    const MedianFilter filter;
+};
+
+void heap_median(MedianFilter f, const Vector& x, Vector& y) {
+    HeapMedian m(f);
+    m.run(x, y);
+}
