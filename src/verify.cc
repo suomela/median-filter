@@ -52,7 +52,7 @@ int main(int argc, const char **argv) {
     if (!arg_parse(argc, argv, scale, skipmove)) {
         return EXIT_FAILURE;
     }
-    unsigned nalg {skipmove ? 2 : n_median_algorithms};
+    unsigned nalg {skipmove ? n_median_algorithms - 1 : n_median_algorithms};
     for (unsigned gen {0}; gen < n_generators; ++gen) {
         unsigned h {1};
         unsigned b {10000 * scale};

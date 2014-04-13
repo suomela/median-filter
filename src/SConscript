@@ -1,7 +1,7 @@
 Import('env')
 common = [
     'DataGenerator.cc', 'TestDriver.cc', 'MedianAlgorithm.cc',
-    'SortMedian.cc', 'TreeMedian.cc', 'MoveMedian.cc',
+    'SortMedian.cc', 'HeapMedian.cc', 'TreeMedian.cc', 'MoveMedian.cc',
     'Util.cc'
 ]
 env.Program('tester', ['tester.cc'] + common)
