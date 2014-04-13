@@ -104,40 +104,44 @@ different input data generators. Run without command line parameters
 for brief usage instructions.
 
 
-Results
--------
+Examples
+--------
 
-Example:
+See "bin/examples"
 
-    build-gcc-short/tester 10 500000 0 4 1
-    build-gcc-short/tester 10 500000 1 4 1
-    build-gcc-short/tester 10 500000 2 4 1
+Output (fastest algorithms marked with a star):
 
-    build-gcc-short/tester 100000 5 0 4 1
-    build-gcc-short/tester 100000 5 1 4 1
-    build-gcc-short/tester 100000 5 2 4 1
+    sort    10      500000   r-asc     1     0.41949
+    heap    10      500000   r-asc     1     0.33698  *
+    tree    10      500000   r-asc     1     1.95750
+    move    10      500000   r-asc     1     0.59366
+    sort    10      500000   r-large   1     0.43000
+    heap    10      500000   r-large   1     0.34347  *
+    tree    10      500000   r-large   1     1.90994
+    move    10      500000   r-large   1     0.59556
 
-    build-gcc-short/tester 1000000 5 0 4 1
-    build-gcc-short/tester 1000000 5 1 4 1
+    sort    100000       5   r-asc     1     0.09464  *
+    heap    100000       5   r-asc     1     0.24753
+    tree    100000       5   r-asc     1     0.72527
+    move    100000       5   r-asc     1    26.84061
+    sort    100000       5   r-large   1     0.12712
+    heap    100000       5   r-large   1     0.09544  *
+    tree    100000       5   r-large   1     1.37709
+    move    100000       5   r-large   1     8.77810
 
-    build-gcc-short/tester 10000000 5 0 4 1
-    build-gcc-short/tester 10000000 5 1 4 1
+    sort    1000000      5   r-asc     1     0.99201  *
+    heap    1000000      5   r-asc     1     3.72149
+    tree    1000000      5   r-asc     1     8.79285
+    sort    1000000      5   r-large   1     1.69136
+    heap    1000000      5   r-large   1     1.46445  *
+    tree    1000000      5   r-large   1    28.58766
 
-Output:
-
-    sort   10    500000   r-large   1   0.41762
-    tree   10    500000   r-large   1   1.87928
-    move   10    500000   r-large   1   0.58916
-
-    sort   100000     5   r-large   1   0.10857
-    tree   100000     5   r-large   1   1.28120
-    move   100000     5   r-large   1   8.74902
-
-    sort   1000000    5   r-large   1   1.66317
-    tree   1000000    5   r-large   1   27.97039
-
-    sort   10000000   5   r-large   1   25.30195
-    tree   10000000   5   r-large   1   426.24067
+    sort    10000000     5   r-asc     1    10.22568  *
+    heap    10000000     5   r-asc     1    43.04612
+    tree    10000000     5   r-asc     1    96.44205
+    sort    10000000     5   r-large   1    25.92459
+    heap    10000000     5   r-large   1    14.52637  *
+    tree    10000000     5   r-large   1   451.26781
 
 Columns:
 
@@ -150,6 +154,11 @@ Columns:
 
 Here window size is k = 2h + 1.
 Input data is a vector with n = bk elements.
+
+In this example we used the following generators:
+
+  - "r-asc": monotonically incresing sequence + random noise
+  - "r-large": large random numbers
 
 
 Plots
