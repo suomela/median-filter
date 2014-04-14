@@ -1,0 +1,13 @@
+matlab	1	10000	r-large	0	0.18311
+matlab	2	5000	r-large	0	0.00954
+matlab	5	2000	r-large	0	0.01155
+matlab	10	1000	r-large	0	0.02243
+matlab	20	500	r-large	0	0.05011
+matlab	50	200	r-large	0	0.09501
+matlab	100	100	r-large	0	0.15357
+matlab	200	50	r-large	0	0.30876
+matlab	500	20	r-large	0	0.76228
+matlab	1000	10	r-large	0	1.53804
+matlab	2000	5	r-large	0	3.07279
+matlab	5000	2	r-large	0	7.66307
+matlab	10000	1	r-large	0	15.14023
