@@ -1,7 +1,7 @@
 #!/bin/sh
 
 tester=../../build-gcc-short/tester
-for alg in 0 1 2; do
+for alg in 0 1 2 3; do
     $tester 1 10000 $alg 4 1 || exit 1
     $tester 2  5000 $alg 4 1 || exit 1
     $tester 5  2000 $alg 4 1 || exit 1
