@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      4924,        135]
-NotebookOptionsPosition[      4553,        118]
-NotebookOutlinePosition[      4910,        134]
-CellTagsIndexPosition[      4867,        131]
+NotebookDataLength[      4811,        128]
+NotebookOptionsPosition[      4440,        111]
+NotebookOutlinePosition[      4797,        127]
+CellTagsIndexPosition[      4754,        124]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -73,31 +73,23 @@ Cell[BoxData[
     RowBox[{"{", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"1", ",", "10000"}], "]"}], ",", 
+       RowBox[{"1", ",", "10000"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"2", ",", "5000"}], "]"}], ",", 
+       RowBox[{"10", ",", "1000"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"5", ",", "2000"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"100", ",", "100"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"10", ",", "1000"}], "]"}], ",", 
+       RowBox[{"1000", ",", "10"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"20", ",", "500"}], "]"}], ",", 
+       RowBox[{"1", ",", "100000"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"50", ",", "200"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"10", ",", "10000"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"100", ",", "100"}], "]"}], ",", 
+       RowBox[{"100", ",", "1000"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"200", ",", "50"}], "]"}], ",", 
+       RowBox[{"1000", ",", "100"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"MFBenchmark", "[", 
-       RowBox[{"500", ",", "20"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"MFBenchmark", "[", 
-       RowBox[{"1000", ",", "10"}], "]"}], ",", 
-      RowBox[{"MFBenchmark", "[", 
-       RowBox[{"2000", ",", "5"}], "]"}], ",", 
-      RowBox[{"MFBenchmark", "[", 
-       RowBox[{"5000", ",", "2"}], "]"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"MFBenchmark", "[", 
-       RowBox[{"10000", ",", "1"}], "]"}], ",", 
+       RowBox[{"10000", ",", "10"}], "]"}], ",", "\[IndentingNewLine]", 
       RowBox[{"{", "}"}]}], "\[IndentingNewLine]", "}"}], ",", " ", 
     "\"\<TSV\>\""}], "]"}], ";"}]], "Input",
  CellChangeTimes->{{3.606337146505651*^9, 3.606337148021146*^9}, {
@@ -105,7 +97,8 @@ Cell[BoxData[
    3.6064725241762447`*^9}, {3.6064726395563707`*^9, 3.606472700679747*^9}, {
    3.6064728129819202`*^9, 3.606472828673996*^9}, {3.606472886994362*^9, 
    3.606472891211174*^9}, 3.606473055287565*^9, {3.606473088706397*^9, 
-   3.606473152338407*^9}}],
+   3.606473152338407*^9}, {3.60647565748704*^9, 3.6064757008995543`*^9}, {
+   3.6064760597105*^9, 3.606476132342988*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -116,7 +109,7 @@ Cell[BoxData[
     "]"}], ";"}]], "Input",
  CellChangeTimes->{{3.606473302432049*^9, 3.60647336255374*^9}}]
 },
-WindowSize->{1248, 1293},
+WindowSize->{1406, 1293},
 WindowMargins->{{71, Automatic}, {Automatic, 0}},
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",
@@ -135,8 +128,8 @@ CellTagsIndex->{}
 Notebook[{
 Cell[557, 20, 1688, 40, 165, "Input"],
 Cell[2248, 62, 189, 4, 28, "Input"],
-Cell[2440, 68, 1830, 39, 131, "Input"],
-Cell[4273, 109, 276, 7, 28, "Input"]
+Cell[2440, 68, 1717, 32, 216, "Input"],
+Cell[4160, 102, 276, 7, 28, "Input"]
 }
 ]
 *)
