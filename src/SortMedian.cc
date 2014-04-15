@@ -2,138 +2,131 @@
 #include <algorithm>
 #include <limits>
 
+struct Buffer {
+public:
+    std::vector<std::pair<elem_t, unsigned>> sorted;
+
+    explicit Buffer(MedianFilter f) :
+        sorted(f.k),
+        filter {f}
+    {}
+
+    void init(const elem_t* p) {
+        for (unsigned i {0}; i < filter.k; ++i) {
+            sorted[i] = std::make_pair(p[i], i);
+        }
+        std::sort(sorted.begin(), sorted.end());
+    }
+
+private:
+    const MedianFilter filter;
+};
+
+
 struct Part {
 private:
-    constexpr static unsigned NONE {std::numeric_limits<unsigned>::max()};
-
-    struct Elem {
-        elem_t data;
-        unsigned rank;
+    struct Link {
         unsigned prev;
         unsigned next;
     };
 
 public:
-    // Always points to data or tail (never head)
-    unsigned med;
-    // Elements before med
-    unsigned small;
-    // Elements at or after med
-    unsigned large;
-
     explicit Part(MedianFilter f) :
         filter {f},
-        elem(f.k + 2),
-        sorted(f.k)
+        link(f.k + 1)
     {}
 
-    void init(const Vector& x, unsigned part) {
-        elem[head()].data = 0;
-        elem[tail()].data = std::numeric_limits<elem_t>::max();
-        for (unsigned i {0}; i < filter.k; ++i) {
-            elem_t e {x[filter.k * part + i]};
-            elem[i].data = e;
-            sorted[i] = std::make_pair(e, i);
-        }
-        std::sort(sorted.begin(), sorted.end());
-        init_links();
-        med = sorted[filter.half].second;
+    void init(const elem_t* p, const Buffer& buf) {
+        data = p;
+        init_links(buf);
+        med = buf.sorted[filter.half].second;
         small = filter.half;
-        large = filter.half + 1;
     }
 
     void unwind() {
         for (unsigned j {0}; j < filter.k; ++j) {
             unsigned i {filter.k - 1 - j};
-            Elem e = elem[i];
-            elem[e.prev].next = e.next;
-            elem[e.next].prev = e.prev;
+            Link l = link[i];
+            link[l.prev].next = l.next;
+            link[l.next].prev = l.prev;
         }
         med = tail();
         small = 0;
-        large = 0;
     }
 
     inline void del(unsigned i) {
-        Elem e = elem[i];
-        elem[e.prev].next = e.next;
-        elem[e.next].prev = e.prev;
-        if (e.rank < elem[med].rank) {
+        Link l = link[i];
+        link[l.prev].next = l.next;
+        link[l.next].prev = l.prev;
+        if (below_med(i)) {
             --small;
         } else {
             if (i == med) {
-                med = e.next;
+                med = l.next;
             }
             if (small > 0) {
-                med = elem[med].prev;
+                med = link[med].prev;
                 --small;
-            } else {
-                --large;
             }
         }
     }
 
     inline void add(unsigned i) {
-        Elem e = elem[i];
-        elem[e.prev].next = i;
-        elem[e.next].prev = i;
-        if (e.rank < elem[med].rank) {
-            med = elem[med].prev;
+        Link l = link[i];
+        link[l.prev].next = i;
+        link[l.next].prev = i;
+        if (below_med(i)) {
+            med = link[med].prev;
         }
-        ++large;
     }
 
     inline void advance() {
-        med = elem[med].next;
+        med = link[med].next;
         ++small;
-        --large;
     }
 
     inline elem_t peek() const {
-        return elem[med].data;
+        return med == tail() ? std::numeric_limits<elem_t>::max() : data[med];
     }
 
     inline bool at_end() const {
-        return large == 0;
+        return med == tail();
     }
 
-    inline elem_t midpoint() const {
-        return sorted[filter.half].first;
+    inline unsigned nsmall() const {
+        return small;
     }
 
 private:
-    void init_links() {
-        unsigned a {head()};
-        elem[head()].prev = NONE;
-        elem[head()].rank = NONE;
+    void init_links(const Buffer& buf) {
+        unsigned a {tail()};
         for (unsigned i {0}; i < filter.k; ++i) {
-            unsigned b {sorted[i].second};
-            elem[a].next = b;
-            elem[b].prev = a;
-            elem[b].rank = i;
+            unsigned b {buf.sorted[i].second};
+            link[a].next = b;
+            link[b].prev = a;
             a = b;
         }
-        elem[a].next = tail();
-        elem[tail()].prev = a;
-        elem[tail()].next = NONE;
-        elem[tail()].rank = filter.k;
+        link[a].next = tail();
+        link[tail()].prev = a;
     }
 
-    inline unsigned head() const {
-        return filter.k;
+    inline bool below_med(unsigned i) const {
+        return med == tail() ||
+            data[i] < data[med] ||
+            (data[i] == data[med] && i < med);
     }
 
     inline unsigned tail() const {
-        return filter.k + 1;
+        return filter.k;
     }
 
-    inline unsigned listsize() const {
-        return filter.k + 2;
-    }
-
+    // Element index or tail
+    unsigned med;
+    // Elements before med
+    unsigned small;
+    const elem_t* data;
     MedianFilter filter;
-    std::vector<Elem> elem;
-    std::vector<std::pair<elem_t, unsigned>> sorted;
+    std::vector<Link> link;
 };
 
 
@@ -141,40 +134,45 @@ class SortMedian {
 public:
     explicit SortMedian(MedianFilter f) :
         filter {f},
+        buf {f},
         a {f},
         b {f}
     {}
 
     void run(const Vector& x, Vector& y) {
-        b.init(x, 0);
-        y[0] = b.midpoint();
+        init(x, 0);
+        y[0] = b.peek();
         for (unsigned part {1}; part < filter.blocks; ++part) {
             std::swap(a, b);
-            b.init(x, part);
+            init(x, part);
             b.unwind();
             run_part(y, part);
         }
     }
 
 private:
+    void init(const Vector& x, unsigned part) {
+        const elem_t* p = x.data() + filter.k * part;
+        buf.init(p);
+        b.init(p, buf);
+    }
+
     void run_part(Vector& y, unsigned part) {
         for (unsigned i {0}; i < filter.k; ++i) {
             a.del(i);
             b.add(i);
-            assert(a.small + b.small <= filter.half);
+            assert(a.nsmall() + b.nsmall() <= filter.half);
             balance();
-            assert(a.small + b.small == filter.half);
+            assert(a.nsmall() + b.nsmall() == filter.half);
             elem_t median {std::min(a.peek(), b.peek())};
             y[(part - 1) * filter.k + i + 1] = median;
         }
-        assert(a.small == 0);
-        assert(a.large == 0);
-        assert(b.small == filter.half);
-        assert(b.large == filter.half + 1);
+        assert(a.nsmall() == 0);
+        assert(b.nsmall() == filter.half);
     }
 
     inline void balance() {
-        if (a.small + b.small < filter.half) {
+        if (a.nsmall() + b.nsmall() < filter.half) {
             if (a_next()) {
                 a.advance();
             } else {
@@ -194,6 +192,7 @@ private:
     }
 
     const MedianFilter filter;
+    Buffer buf;
     Part a;
     Part b;
 };
