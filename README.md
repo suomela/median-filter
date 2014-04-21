@@ -52,8 +52,8 @@ The original idea is from:
     "Algorithm AS 296: Optimal median smoothing",
     Journal of the Royal Statistical Society, Series C
     (Applied Statistics), 44(2):258-264
-    http://dx.doi.org/10.2307/2986349
-    http://www.jstor.org/stable/2986349
+  - http://dx.doi.org/10.2307/2986349
+  - http://www.jstor.org/stable/2986349
 
 This algorithm is used in R function runmed, with parameter
 algorithm = "Turlach".
