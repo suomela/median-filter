@@ -2,7 +2,7 @@
 #SBATCH -p short
 #SBATCH --qos=short
 #SBATCH --time=00:30:00
-#SBATCH --mem-per-cpu=60000
+#SBATCH --mem-per-cpu=120000
 #SBATCH --output=../../tmp/log/slurm-%j.out
 
 srun ./run.sh
