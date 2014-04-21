@@ -144,37 +144,38 @@ See "bin/examples"
 
 Output (fastest algorithms marked with a star):
 
-    sort    10      500000   r-asc     1     0.41949
-    heap    10      500000   r-asc     1     0.33698  *
-    tree    10      500000   r-asc     1     1.95750
-    move    10      500000   r-asc     1     0.59366
-    sort    10      500000   r-large   1     0.43000
-    heap    10      500000   r-large   1     0.34347  *
-    tree    10      500000   r-large   1     1.90994
-    move    10      500000   r-large   1     0.59556
+    sort    10      500000   r-asc     1     0.37903
+    heap    10      500000   r-asc     1     0.33694 *
+    tree    10      500000   r-asc     1     1.92399
+    move    10      500000   r-asc     1     0.61234
+    sort    10      500000   r-large   1     0.40114
+    heap    10      500000   r-large   1     0.33726 *
+    tree    10      500000   r-large   1     1.97069
+    move    10      500000   r-large   1     0.59606
 
-    sort    100000       5   r-asc     1     0.09464  *
-    heap    100000       5   r-asc     1     0.24753
-    tree    100000       5   r-asc     1     0.72527
-    move    100000       5   r-asc     1    26.84061
-    sort    100000       5   r-large   1     0.12712
-    heap    100000       5   r-large   1     0.09544  *
-    tree    100000       5   r-large   1     1.37709
-    move    100000       5   r-large   1     8.77810
+    sort    100000       5   r-asc     1     0.08125 *
+    heap    100000       5   r-asc     1     0.23712
+    tree    100000       5   r-asc     1     0.66017
+    move    100000       5   r-asc     1    26.93506
+    sort    100000       5   r-large   1     0.08979 *
+    heap    100000       5   r-large   1     0.09957
+    tree    100000       5   r-large   1     1.53184
+    move    100000       5   r-large   1     9.01672
 
-    sort    1000000      5   r-asc     1     0.99201  *
-    heap    1000000      5   r-asc     1     3.72149
-    tree    1000000      5   r-asc     1     8.79285
-    sort    1000000      5   r-large   1     1.69136
-    heap    1000000      5   r-large   1     1.46445  *
-    tree    1000000      5   r-large   1    28.58766
+    sort    1000000      5   r-asc     1     0.91729 *
+    heap    1000000      5   r-asc     1     3.73655
+    tree    1000000      5   r-asc     1     8.75793
+    sort    1000000      5   r-large   1     1.48117
+    heap    1000000      5   r-large   1     1.32437 *
+    tree    1000000      5   r-large   1    29.67124
 
-    sort    10000000     5   r-asc     1    10.22568  *
-    heap    10000000     5   r-asc     1    43.04612
-    tree    10000000     5   r-asc     1    96.44205
-    sort    10000000     5   r-large   1    25.92459
-    heap    10000000     5   r-large   1    14.52637  *
-    tree    10000000     5   r-large   1   451.26781
+    sort    10000000     5   r-asc     1     9.27875 *
+    heap    10000000     5   r-asc     1    44.77312
+    tree    10000000     5   r-asc     1    95.78014
+    sort    10000000     5   r-large   1    23.72148
+    heap    10000000     5   r-large   1    14.37096 *
+    tree    10000000     5   r-large   1   441.65488
+
 
 Columns:
 
