@@ -1,7 +1,10 @@
 #include "HeapMedian.h"
 
 // Based on:
+// http://stackoverflow.com/a/5970314/383299
+// https://gist.github.com/ashelly/5665911
 // https://github.com/craffel/median-filter
+//
 // Sliding median filter
 // Created 2012 by Colin Raffel
 // Portions Copyright (c) 2011 ashelly.myopenid.com under <http://www.opensource.org/licenses/mit-license>

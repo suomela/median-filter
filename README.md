@@ -1,7 +1,8 @@
 Median Filter
 =============
 
-(a.k.a. **sliding window median** or **running median**)
+(a.k.a. **sliding window median**, **running median filter**,
+and **rolling median filter**)
 
 Benchmarking median filter algorithms,
 see: http://cstheory.stackexchange.com/q/21730/74
@@ -28,12 +29,44 @@ Algorithms
 
   - "sort": O(n log k): sort blocks, do linear-time post-processing
 
-  - "heap": O(n log k): maintain heaps
-    (by Colin Raffel, from https://github.com/craffel/median-filter)
+  - "heap": O(n log k): maintain a maxheap + minheap pair
 
   - "tree": O(n log k): maintain balanced search trees
 
-  - "move": O(n k): maintain sorted vector
+  - "move": O(n k): maintain a sorted vector
+
+
+### Sort algorithm
+
+This algorithm is discussed here:
+
+  - http://cstheory.stackexchange.com/a/21991/74
+
+
+### Heap algorithm
+
+The basic idea is to maintain a maxheap + minheap pair.
+The original idea is from:
+
+  - W. Hardle and W. Steiger (1995):
+    "Algorithm AS 296: Optimal median smoothing",
+    Journal of the Royal Statistical Society, Series C
+    (Applied Statistics), 44(2):258-264
+    http://dx.doi.org/10.2307/2986349
+    http://www.jstor.org/stable/2986349
+
+This algorithm is used in R function runmed, with parameter
+algorithm = "Turlach".
+
+The present implementation is by AShelly:
+
+  - http://stackoverflow.com/a/5970314/383299
+  - https://gist.github.com/ashelly/5665911
+
+It was further adapted by Colin Raffel, and this is the version that
+we use (almost verbatim):
+
+  - https://github.com/craffel/median-filter
 
 
 Compilation
