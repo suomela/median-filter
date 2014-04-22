@@ -31,9 +31,9 @@ public:
   
   ~Mediator()
   {
-    delete data;
-    delete pos;
-    delete allocatedHeap;
+    delete[] data;
+    delete[] pos;
+    delete[] allocatedHeap;
   }
   
   // Inserts item, maintains median in O(lg nItems)
