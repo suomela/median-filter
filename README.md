@@ -80,6 +80,7 @@ work fine:
 
         g++-4.7 (Ubuntu/Linaro 4.7.3-2ubuntu1~12.04) 4.7.3
         g++-4.8 (GCC) 4.8.2
+        g++-4.9 (GCC) 4.9.0 20140411 (prerelease)
 
   - clang++ (LLVM 3.4 or later). Tested with these versions:
 
@@ -89,7 +90,7 @@ For OS X 10.9.2, you can get the right versions of the compilers
 from the following sources:
 
   - clang++: from Apple
-  - g++-4.8: from Homebrew
+  - g++-4.9: from Homebrew ("brew install gcc49")
 
 Depending on your C++ compiler and operating system, use one of
 the following scripts to compile this software.
@@ -98,16 +99,18 @@ the following scripts to compile this software.
 
   - "bin/build-clang": compiles with "clang++"
   - "bin/build-gcc-4.8-osx": compiles with "g++-4.8"
+  - "bin/build-gcc-4.9-osx": compiles with "g++-4.9"
 
 **Linux**:
 
   - "bin/build-gcc": compiles with "g++"
   - "bin/build-gcc-4.7": compiles with "g++-4.7"
   - "bin/build-gcc-4.8": compiles with "g++-4.8"
+  - "bin/build-gcc-4.9": compiles with "g++-4.9"
 
 You can also try to use "scons" to compile everything. The build
 scripts are configured for OS X platforms that have both clang++
-and g++-4.8 installed. You can get both scons and g++-4.8 from
+and g++-4.9 installed. You can get both scons and g++-4.9 from
 Homebrew.
 
 
