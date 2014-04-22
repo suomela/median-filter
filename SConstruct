@@ -9,7 +9,7 @@ for version in ['long', 'short']:
     cppdefines=[]
     if version == 'long':
         cppdefines.append('ELEMENT_LONG')
-    gcccommon='-std=c++11 -O3 -Werror -Wall -Wextra -Wold-style-cast -Woverloaded-virtual -Wsign-promo -Wdouble-promotion -Wconversion -Wsign-conversion -Wmissing-declarations -Wredundant-decls -Wno-unused-parameter -Wno-unused-function -Wno-unused-variable'
+    gcccommon='-fdiagnostics-color=always -std=c++11 -O3 -Werror -Wall -Wextra -Wold-style-cast -Woverloaded-virtual -Wsign-promo -Wdouble-promotion -Wconversion -Wsign-conversion -Wmissing-declarations -Wredundant-decls -Wno-unused-parameter'
     gccsanity='-fsanitize=address -fsanitize=undefined'
     build('build-gcc-' + version,
         CXX='g++-4.9',
@@ -24,6 +24,6 @@ for version in ['long', 'short']:
     )
     build('build-clang-' + version,
         CXX='clang++',
-        CXXFLAGS='-std=c++11 -march=native -O3 -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unused-parameter -Wno-unused-function -Wno-unused-variable',
+        CXXFLAGS='-std=c++11 -march=native -O3 -Weverything -Werror -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-unused-parameter',
         CPPDEFINES=cppdefines,
     )
