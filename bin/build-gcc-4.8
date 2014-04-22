@@ -1,3 +1,3 @@
 #!/bin/sh
 
-CXX="g++-4.8" CXXFLAGS="-std=c++11 -O3 -march=native -Werror -Wall -Wold-style-cast -Woverloaded-virtual -Wsign-promo -Wdouble-promotion -Wconversion -Wsign-conversion -Wmissing-declarations -Wredundant-decls -Wno-unused-parameter -Wno-unused-function -Wno-unused-variable" VERSION="gcc" bin/build-helper || exit 1
+CXX="g++-4.8" CXXFLAGS="-std=c++11 -march=native -O3 -Wall -Wextra -Wold-style-cast -Woverloaded-virtual -Wsign-promo -Wdouble-promotion -Wconversion -Wsign-conversion -Wmissing-declarations -Wredundant-decls -Wno-unused-parameter" VERSION="gcc" bin/build-helper || exit 1
