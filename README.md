@@ -80,7 +80,7 @@ work fine:
 
         g++-4.7 (Ubuntu/Linaro 4.7.3-2ubuntu1~12.04) 4.7.3
         g++-4.8 (GCC) 4.8.2
-        g++-4.9 (GCC) 4.9.0 20140411 (prerelease)
+        g++-4.9 (GCC) 4.9.0
 
   - clang++ (LLVM 3.4 or later). Tested with these versions:
 
