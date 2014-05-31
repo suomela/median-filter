@@ -88,26 +88,26 @@ class Block:
 
 def sort_median(h, b, x):
     k = 2 * h + 1
-    L2 = Block(h, x[0:k])
+    B = Block(h, x[0:k])
     y = []
-    y.append(L2.peek())
+    y.append(B.peek())
     for j in range(1, b):
-        L1 = L2
-        L2 = Block(h, x[j*k:(j+1)*k])
-        L2.unwind()
-        assert L1.s == h
-        assert L2.s == 0
+        A = B
+        B = Block(h, x[j*k:(j+1)*k])
+        B.unwind()
+        assert A.s == h
+        assert B.s == 0
         for i in range(k):
-            L1.delete(i)
-            L2.undelete(i)
-            assert L1.s + L2.s <= h
-            if L1.s + L2.s < h:
-                if L1.peek() <= L2.peek():
-                    L1.advance()
+            A.delete(i)
+            B.undelete(i)
+            assert A.s + B.s <= h
+            if A.s + B.s < h:
+                if A.peek() <= B.peek():
+                    A.advance()
                 else:
-                    L2.advance()
-            assert L1.s + L2.s == h
-            y.append(min(L1.peek(), L2.peek()))
-        assert L1.s == 0
-        assert L2.s == h
+                    B.advance()
+            assert A.s + B.s == h
+            y.append(min(A.peek(), B.peek()))
+        assert A.s == 0
+        assert B.s == h
     return y
