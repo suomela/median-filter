@@ -88,6 +88,7 @@ class Block:
 
 def sort_median(h, b, x):
     k = 2 * h + 1
+    assert len(x) == k * b
     B = Block(h, x[0:k])
     y = []
     y.append(B.peek())
