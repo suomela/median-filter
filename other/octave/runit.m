@@ -1,10 +1,12 @@
 pkg load signal;
-mfbenchmark(1, 10000);
-mfbenchmark(10, 1000);
-mfbenchmark(100, 100);
-mfbenchmark(1000, 10);
-mfbenchmark(1, 100000);
-mfbenchmark(10, 10000);
-mfbenchmark(100, 1000);
-mfbenchmark(1000, 100);
-mfbenchmark(10000, 10);
+for seed = 1:10
+    mfbenchmark(1, 10000, seed);
+    mfbenchmark(10, 1000, seed);
+    mfbenchmark(100, 100, seed);
+    mfbenchmark(1000, 10, seed);
+    mfbenchmark(1, 100000, seed);
+    mfbenchmark(10, 10000, seed);
+    mfbenchmark(100, 1000, seed);
+    mfbenchmark(1000, 100, seed);
+    mfbenchmark(10000, 10, seed);
+endfor

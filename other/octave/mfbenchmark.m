@@ -1,10 +1,10 @@
-function mfbenchmark(h, b)
+function mfbenchmark(h, b, seed)
 %  mfbenchmark(h, b)   Benchmark medfilt1
 %
 %    h = half-window size
 %    b = number of blocks
+%    seed = random seed
 
-seed = 1;
 rand('seed', seed);
 k = 2*h+1;
 n = k*b;
