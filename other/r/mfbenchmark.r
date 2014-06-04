@@ -1,5 +1,13 @@
-test <- function(h, b, alg) {
+args=(commandArgs(TRUE))
+if (length(args)==0) {
     seed <- 1
+} else {
+    for(i in 1:length(args)){
+        eval(parse(text=args[[i]]))
+    }
+}
+
+test <- function(h, b, alg) {
     set.seed(seed)
     k <- 2*h+1
     n <- k*b

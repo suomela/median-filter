@@ -1,4 +1,5 @@
 #!/bin/sh
 
-R --version | tee log || exit 1
-R CMD BATCH --slave --no-timing mfbenchmark.r /dev/stdout | tee result
+seed="$1"
+R --version | tee "log-$seed" || exit 1
+R CMD BATCH --slave --no-timing "--args seed=$seed" mfbenchmark.r /dev/stdout | tee "result-$seed"
