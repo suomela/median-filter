@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH -p short
+#SBATCH --qos=short
+#SBATCH --time=00:45:00
+#SBATCH --mem-per-cpu=2500
+#SBATCH --constraint=xeon
+#SBATCH --output=../../tmp/log/slurm-%j.out
+
+srun ./run.sh "$@"
