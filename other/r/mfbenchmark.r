@@ -4,7 +4,15 @@ test <- function(h, b, seed, alg) {
     n <- k*b
     x <- sample(2**32, n)
     e <- system.time(runmed(x, k, "keep", alg))["elapsed"]
-    cat(sprintf('R%s\t%d\t%d\tr-large\t%d\t%.3f\n', alg, h, b, seed, e), sep="")
+    if (e < 0.01) {
+        e <- system.time(for(i in 1:100) runmed(x, k, "keep", alg))["elapsed"] / 100.0
+        cat(sprintf('R%s\t%d\t%d\tr-large\t%d\t%.5f\n', alg, h, b, seed, e), sep="")
+    } else if (e < 0.1) {
+        e <- system.time(for(i in 1:10) runmed(x, k, "keep", alg))["elapsed"] / 10.0
+        cat(sprintf('R%s\t%d\t%d\tr-large\t%d\t%.4f\n', alg, h, b, seed, e), sep="")
+    } else {
+        cat(sprintf('R%s\t%d\t%d\tr-large\t%d\t%.3f\n', alg, h, b, seed, e), sep="")
+    }
     flush.console()
 }
 
