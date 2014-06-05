@@ -45,18 +45,11 @@ This algorithm is discussed here:
 
 ### Heap algorithm
 
-The basic idea is to maintain a maxheap + minheap pair.
-The original idea is from:
+The basic idea is to maintain a maxheap + minheap pair, see:
 
-  - W. Hardle and W. Steiger (1995):
-    "Algorithm AS 296: Optimal median smoothing",
-    Journal of the Royal Statistical Society, Series C
-    (Applied Statistics), 44(2):258-264
+  - http://dx.doi.org/10.1109/29.17539
+  - http://dx.doi.org/10.1109/78.80784
   - http://dx.doi.org/10.2307/2986349
-  - http://www.jstor.org/stable/2986349
-
-This algorithm is used in R function runmed, with parameter
-algorithm = "Turlach".
 
 The present implementation is by AShelly:
 
