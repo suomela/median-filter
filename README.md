@@ -5,7 +5,7 @@ Median Filter
 and **rolling median filter**)
 
 Benchmarking median filter algorithms,
-see: http://cstheory.stackexchange.com/q/21730/74
+see: http://arxiv.org/abs/1406.1717
 
 
 Problem
@@ -38,9 +38,9 @@ Algorithms
 
 ### Sort algorithm
 
-This algorithm is discussed here:
+This algorithm is described here:
 
-  - http://cstheory.stackexchange.com/a/21991/74
+  - http://arxiv.org/abs/1406.1717
 
 
 ### Heap algorithm
