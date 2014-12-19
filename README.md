@@ -8,6 +8,13 @@ Benchmarking median filter algorithms,
 see: http://arxiv.org/abs/1406.1717
 
 
+News
+----
+
+If you are looking for a practical median filter algorithm
+for 1D and 2D data, see: https://github.com/suomela/mf2d
+
+
 Problem
 -------
 
