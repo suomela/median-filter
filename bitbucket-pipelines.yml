@@ -1,0 +1,7 @@
+pipelines:
+  default:
+    - step:
+        script:
+          - bin/build-gcc
+          - build-gcc-short/verify
+          - build-gcc-long/verify
