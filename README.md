@@ -221,7 +221,7 @@ Copyright (c) 2014, Jukka Suomela.
 You can distribute and use this software under the MIT license:
 http://opensource.org/licenses/MIT
 
-To contact the author, see http://users.ics.aalto.fi/suomela/
+To contact the author, see https://jukkasuomela.fi/
 
 
 ### HeapMedian.cc
